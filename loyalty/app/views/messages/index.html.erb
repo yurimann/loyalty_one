@@ -1,1 +1,8 @@
-<h1>Hello World!</h1>
+<%= render 'form' %>
+<div class="board">
+  <% @messages.each do |message| %>
+    <div class="box">
+      <%= message.memo %>
+    </div>
+  <% end %>
+</div>

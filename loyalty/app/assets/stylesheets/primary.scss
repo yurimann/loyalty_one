@@ -1,0 +1,13 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+  margin: auto 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: $font-stack
+}
+
+body {
+  padding: 20px;
+}

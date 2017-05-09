@@ -1,7 +1,9 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.all
+    @messages = Message.ascending
+    @message = Message.new
   end
+
   def new
     @message = Message.new
   end
@@ -13,7 +15,8 @@ class MessagesController < ApplicationController
       format.html
       format.json { render json: @message }
     end
-    
+
+    @message.save
   end
 
   def edit
