@@ -1,6 +1,4 @@
-// Place all the styles related to the messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
 
 #new_message {
   text-align: center;
@@ -13,8 +11,14 @@
 
 .box {
   display: block;
-  background-color: beige;
+  background-color: $background;
   padding: 10px;
   border: 3px solid black;
   margin: 5px;
+}
+
+.post-date {
+  text-align: right;
+  font-size: .60em;
+  font-style: italic;
 }

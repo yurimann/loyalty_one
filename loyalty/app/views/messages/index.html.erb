@@ -1,8 +1,20 @@
-<%= render 'form' %>
+<% if current_user %>
+<script type="text/javascript">
+  var userId = <%= current_user.id  %>
+</script>
+  <%= render 'form' %>
+<% else %>
+  <h2>Please log in to post a message</h2>
+<% end %>
 <div class="board">
   <% @messages.each do |message| %>
     <div class="box">
-      <%= message.memo %>
+      <div class="text">
+        <%= message.memo %>
+      </div>
+      <div class="post-date">
+        <%= message.created_at %>
+      </div>
     </div>
   <% end %>
 </div>

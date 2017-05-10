@@ -9,6 +9,23 @@
   </head>
 
   <body>
+    <div id="nav">
+      <% if current_user %>
+        <%= link_to "My Profile", edit_user_path(current_user.id) %>
+        <%= link_to "Logout", :logout, method: :post %>
+      <% else %>
+        <%= link_to "Register", new_user_path %> |
+        <%= link_to "Login", :login %>
+      <% end %>
+    </div>
+    <div class="flashes">
+      <% if flash[:notice] %>
+        <p id="notice"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p id="alert"><%= flash[:alert] %></p>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
