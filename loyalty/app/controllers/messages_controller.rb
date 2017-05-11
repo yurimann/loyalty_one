@@ -2,6 +2,11 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.ascending
     @message = Message.new
+    @user_messages = current_user.messages
+    respond_to do |format|
+      format.html
+      format.json { render json: @user_messages }
+    end
   end
 
   def new
@@ -10,7 +15,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-byebug
+
     respond_to do |format|
       format.html
       format.json { render json: @message }
