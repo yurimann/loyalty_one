@@ -5,9 +5,9 @@ $(document).on('ready', function(){
     method: 'GET',
     dataType: 'JSON'
   }).done(function(data){
-    console.log(data);
+
   }).fail(function(data){
-    console.log(data);
+  
   });
 
   $('.edit-link').on('click', function(){

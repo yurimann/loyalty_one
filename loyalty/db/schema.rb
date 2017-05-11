@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510194149) do
+ActiveRecord::Schema.define(version: 20170511174013) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "memo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "user_id"
+    t.integer  "parent_message_id"
   end
 
   create_table "users", force: :cascade do |t|

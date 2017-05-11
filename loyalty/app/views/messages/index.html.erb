@@ -10,10 +10,17 @@
   <% @messages.each do |message| %>
     <div class="box">
       <div class="text">
-        <%= message.memo %>
+        <p><%= message.memo %></p>
+        <p>Author: <%= User.find(message.user_id).username %></p>
       </div>
-      <div class="post-date">
-        <%# message.created_at.in_time_zone("Eastern Time (US & Canada)") %>
+      <div class="reply-box">
+        <% if current_user %>
+          <p class="reply">Reply</p>
+        <% end %>
+      </div>
+      <div class="form-modal show">
+        <input type="hidden" name="parent_message_id" val="<%= message.id %>">
+        <%= render 'reply_form' %>
       </div>
     </div>
   <% end %>

@@ -1,35 +1,33 @@
 $(document).on("ready", function(){
 
-  var date = Date();
 
-  $('.submit').on('click', function(e){
+  $(".submit").on("click", function(e){
     e.preventDefault();
-
-
-    if ($('#message_memo').val() === "") {
+    if ($("#message_memo").val() === "") {
       alert("Sorry, message cannot be blank")
     }
     else {
-      var authToken = {"auth_token": $(this).children('input[type=hidden]').val()}
-      $.ajax({
+        $.ajax({
         url: "/messages",
         method: "POST",
         data: {"message":
-                { authToken,
-                  "memo": $('#message_memo').val(),
-                  "user_id": userId
+                {
+                  "memo": $("#message_memo").val(),
+                  "user_id": userId,
+                  "parent_message_id": parentId
                 }
              },
         dataType: "JSON"
 
       }).done(function(data){
-          console.log(data);
-          $(".board").prepend('<div class="box">' + '<div class="text">' + $('#message_memo').val() + '</div>'  + '</div>');
-          $('#message_memo').val('');
+          $(".board").prepend('<div class="box">' + '<div class="text">' + $("#message_memo").val() + '</div>'  + '</div>');
+          $("#message_memo").val("");
       }).fail(function(){
         console.log("failed");
       });
     }
   });
+
+
 
 })

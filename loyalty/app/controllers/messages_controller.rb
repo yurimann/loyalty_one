@@ -2,7 +2,10 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.ascending
     @message = Message.new
-    @user_messages = current_user.messages
+    if current_user
+      @user_messages = current_user.messages
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @user_messages }
@@ -36,6 +39,6 @@ class MessagesController < ApplicationController
 
 private
   def message_params
-    params.require(:message).permit(:memo, :user_id)
+    params.require(:message).permit(:memo, :user_id, :parent_message_id)
   end
 end
