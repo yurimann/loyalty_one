@@ -1,5 +1,6 @@
 $(document).on("ready", function(){
 
+  var parentId;
 
   $(".submit").on("click", function(e){
     e.preventDefault();
@@ -23,7 +24,7 @@ $(document).on("ready", function(){
           $(".board").prepend('<div class="box">' + '<div class="text">' + $("#message_memo").val() + '</div>'  + '</div>');
           $("#message_memo").val("");
       }).fail(function(){
-        console.log("failed");
+        // console.log("failed");
       });
     }
   });

@@ -19,9 +19,26 @@
         <% end %>
       </div>
       <div class="form-modal show">
-        <input type="hidden" name="parent_message_id" val="<%= message.id %>">
+        <input type="hidden" class="parent_message_id" value="<%= message.id %>">
         <%= render 'reply_form' %>
       </div>
     </div>
+    <% message.child_messages.each do |reply| %>
+    <div class="box2">
+      <div class="text">
+        <p><%= reply.memo %></p>
+        <p>Author: <%= User.find(reply.user_id).username %></p>
+      </div>
+      <div class="reply-box">
+        <% if current_user %>
+          <p class="reply">Reply</p>
+        <% end %>
+      </div>
+      <div class="form-modal show">
+        <input type="hidden" class="parent_message_id" value="<%= message.id %>">
+        <%= render 'reply_form' %>
+      </div>
+    </div>
+    <% end %>
   <% end %>
 </div>
