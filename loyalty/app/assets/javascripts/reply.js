@@ -12,6 +12,9 @@ $(document).on("ready", function(){
     e.preventDefault();
 
     var parentId = $(this).parent().siblings($('.parent_message_id')).val();
+    let temp = $(this).parent();
+    let temp2 = temp.parent();
+    var replyBox = temp2.parent();
 
     if ($("#reply-value").val() === "") {
       alert("Sorry, message cannot be blank")
@@ -31,12 +34,23 @@ $(document).on("ready", function(){
 
       }).done(function(data){
 
-          var close = $(this).parent().eq(2)
+          // var close = $(this).parent().eq(2)
+          let parentId = `<input type="hidden" class="parent_message_id" value="${lastMessageId + 1}">`;
+          
+          $('<div class="box2">' +
+              parentId +
+              '<div class="text">' +
+                $("#reply-value").val() +
+              '</div>'  +
+              '<div class="reply-box">' +
+                  '<p class="reply">' + 'Reply' + '</p>' +
+              '</div>' +
+            '</div>'
+          ).insertAfter(replyBox);
 
-          $(".board").append('<div class="box">' + '<div class="text">' + $("#reply-value").val() + '</div>'  + '</div>');
           $("#reply-value").val("");
           $(".show").fadeOut();
-
+          lastMessageId++
       }).fail(function(){
         // console.log("failed");
       });
