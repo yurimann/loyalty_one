@@ -1,9 +1,16 @@
 $(document).on("ready", function(){
-  
-  var parentId;
 
-  $(".submit").on("click", function(e){
+
+
+  $(".new-message").on("click", function(e){
+    $(".show").toggleClass("form-modal");
+  });
+
+  $(".submit").on("click", function sumbit(e){
     e.preventDefault();
+
+    var parentId = $("#master").val()
+
     if ($("#message_memo").val() === "") {
       alert("Sorry, message cannot be blank")
     }
@@ -21,8 +28,8 @@ $(document).on("ready", function(){
         dataType: "JSON"
 
       }).done(function(data){
-          $(".board").prepend('<div class="box">' + '<div class="text">' + $("#message_memo").val() + '</div>'  + '</div>');
           $("#message_memo").val("");
+          location.reload();
       }).fail(function(){
         // console.log("failed");
       });

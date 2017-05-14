@@ -6,6 +6,9 @@ class Message < ApplicationRecord
   validates :memo, presence: true
   validates :user_id, presence: true
 
+  def self.primary_message
+    Message.where(parent_message_id: nil)
+  end
 
   def self.ascending
     Message.order('created_at DESC')

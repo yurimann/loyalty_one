@@ -32,6 +32,17 @@
   display: none;
 }
 
+.show {
+  position: fixed;
+  top: 50px;
+  left: 25%;
+  padding: 20px;
+  border: 3px solid black;
+  border-radius: 20px;
+  background: $background;
+
+}
+
 #instance-reply {
   text-align: center;
 }

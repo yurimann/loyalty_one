@@ -5,7 +5,7 @@ $(document).on("ready", function(){
     method: 'GET',
     dataType: 'JSON'
   }).done(function(data){
-    console.log(data);
+    // console.log(data);
   }).fail(function(data){
 
   });

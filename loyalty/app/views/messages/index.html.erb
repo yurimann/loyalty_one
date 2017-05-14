@@ -1,15 +1,23 @@
 <% if current_user %>
-<script type="text/javascript">
-  var userId = <%= current_user.id  %>
-  var lastMessageId = <%= Message.last.id %>
-</script>
-  <%= render 'form' %>
+  <input type="hidden" class="parent_message_id" id="master" value="">
+  <script type="text/javascript">
+    var userId = <%= current_user.id  %>
+    <% if Message.last != nil %>
+      var lastMessageId = <%= Message.last.id %>;
+    <% end %>
+  </script>
+  <div class="new-message">
+    <p>New Message</p>
+  </div>
+  <div class="form-modal show">
+    <%= render 'form' %>
+  </div>
 <% else %>
   <h2>Please log in to post a message</h2>
 <% end %>
 <div class="board">
   <% @messages.each do |message| %>
-  <% if message.parent_message_id == nil %>
+  <%= puts message %>
     <div class="box">
       <div class="text">
         <p><%= message.memo %></p>
@@ -17,31 +25,32 @@
       </div>
       <div class="reply-box">
         <% if current_user %>
+          <input type="hidden" class="parent_message_id" value="<%= message.id %>">
           <p class="reply">Reply</p>
         <% end %>
       </div>
-      <div class="form-modal show">
-        <input type="hidden" class="parent_message_id" value="<%= message.id %>">
-        <%= render 'reply_form' %>
+
+  </div>
+    <% until message.child_messages.empty? %>
+      <% message.child_messages.each do |msg| %>
+      <%= puts message.memo %>
+      <%= puts msg.memo %>
+        <% x = 0 %>
+        <% y = 10 %>
+        <div style="margin-left: <%= y + x %>%" class="box">
+          <div class="text">
+            <p><%= msg.memo %></p>
+          </div>
+        <div class="reply-box">
+          <% if current_user %>
+            <input type="hidden" class="parent_message_id" value="<%= message.id %>">
+            <p class="reply">Reply</p>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-    <% message.child_messages.each do |reply| %>
-    <div class="box2">
-      <div class="text">
-        <p><%= reply.memo %></p>
-        <p>Author: <%= User.find(reply.user_id).username %></p>
-      </div>
-      <div class="reply-box">
-        <% if current_user %>
-          <p class="reply">Reply</p>
-        <% end %>
-      </div>
-      <div class="form-modal show">
-        <input type="hidden" class="parent_message_id" value="<%= message.id %>">
-        <%= render 'reply_form' %>
-      </div>
-    </div>
+      <% y += 5 %>
+        <% message = msg %>
+       <% end %>
     <% end %>
   <% end %>
 </div>
