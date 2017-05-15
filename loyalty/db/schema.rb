@@ -32,13 +32,3 @@ ActiveRecord::Schema.define(version: 20170511174013) do
   end
 
 end
-
-@messages.each do |message|
-  puts message.memo
-  if message.child_messages.present?
-    message.each do |msg|
-      puts msg.memo
-      message = msg
-    end
-  end
-end

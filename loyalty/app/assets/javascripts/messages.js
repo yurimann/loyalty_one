@@ -10,6 +10,7 @@ $(document).on("ready", function(){
     e.preventDefault();
 
     var parentId = $("#master").val()
+    console.log(parentId);
 
     if ($("#message_memo").val() === "") {
       alert("Sorry, message cannot be blank")

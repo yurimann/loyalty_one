@@ -33,8 +33,6 @@
   </div>
     <% until message.child_messages.empty? %>
       <% message.child_messages.each do |msg| %>
-      <%= puts message.memo %>
-      <%= puts msg.memo %>
         <% x = 0 %>
         <% y = 10 %>
         <div style="margin-left: <%= y + x %>%" class="box">

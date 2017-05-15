@@ -1,17 +1,7 @@
 class MessagesController < ApplicationController
   def index
     messages = Message.primary_message
-    @messages = []
-    messages.each do |message|
-      until message.child_messages.empty?
-        message.child_messages.each do |msg|
-          @messages << msg
-          message = msg
-        end
-
-      end
-    end
-
+    @messages = Message.group(messages)
     @message = Message.new
     if current_user
       @user_messages = current_user.messages
