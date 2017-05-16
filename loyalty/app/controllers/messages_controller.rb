@@ -1,12 +1,13 @@
 class MessagesController < ApplicationController
   def index
+    # primary_message method gets all messages with no parent
     messages = Message.primary_message
     @messages = Message.group(messages)
     @message = Message.new
     if current_user
       @user_messages = current_user.messages
     end
-
+    # gives the user's messages in JSON format
     respond_to do |format|
       format.html
       format.json { render json: @user_messages }
@@ -19,7 +20,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-
+    # Allows JSON to be received from an AJAX call
     respond_to do |format|
       format.html
       format.json { render json: @message }

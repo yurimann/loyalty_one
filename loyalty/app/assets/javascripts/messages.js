@@ -1,6 +1,4 @@
-$(document).on("ready", function(){
-
-
+$(document).on("ready",function(){
 
   $(".new-message").on("click", function(e){
     $(".show").toggleClass("form-modal");
@@ -29,7 +27,7 @@ $(document).on("ready", function(){
         dataType: "JSON"
 
       }).done(function(data){
-          $("#message_memo").val("");
+          // console.log(data);
           location.reload();
       }).fail(function(){
         // console.log("failed");

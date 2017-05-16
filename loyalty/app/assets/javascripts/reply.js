@@ -6,7 +6,7 @@ $(document).on("ready", function(){
     let parentId = $(this).children().val()
     $("#master").attr("value", parentId);
     console.log(parentId);
-    console.log($("#master").attr("value", parentId));
+    // console.log($("#master").attr("value", parentId));
   });
 
 });
