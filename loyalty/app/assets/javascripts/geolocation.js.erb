@@ -1,28 +1,28 @@
-$(document).on("ready", function(){
-
-  $.ajax({
-    url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= Rails.application.secrets.google_api_key %>",
-    method: "POST",
-    dataType: "JSON"
-  }).done(function(e){
-    var latitude = e.location.lat;
-    var longtitude = e.location.lng;
-    console.log(latitude, longtitude);
-    $("#lng").attr("value", longtitude);
-    $("#lat").attr("value", latitude);
-    reverse(latitude, longtitude)
-  });
-
-  function reverse(latitude, longtitude){
-    $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+ longtitude+"",
-      method: "POST",
-      data:"",
-      dataType: "JSON"
-    }).done(function(e){
-      var city = e.results[0].address_components[3].long_name;
-      console.log(city);
-      $("#city").attr("value", city )
-    })
-  }
-})
+// $(document).on("ready", function(){
+//
+//   $.ajax({
+//     url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= Rails.application.secrets.google_api_key %>",
+//     method: "POST",
+//     dataType: "JSON"
+//   }).done(function(e){
+//     var latitude = e.location.lat;
+//     var longtitude = e.location.lng;
+//     console.log(latitude, longtitude);
+//     $("#lng").attr("value", longtitude);
+//     $("#lat").attr("value", latitude);
+//     reverse(latitude, longtitude)
+//   });
+//
+//   function reverse(latitude, longtitude){
+//     $.ajax({
+//       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+ longtitude+"",
+//       method: "POST",
+//       data:"",
+//       dataType: "JSON"
+//     }).done(function(e){
+//       var city = e.results[0].address_components[3].long_name;
+//       console.log(city);
+//       $("#city").attr("value", city )
+//     })
+//   }
+// })

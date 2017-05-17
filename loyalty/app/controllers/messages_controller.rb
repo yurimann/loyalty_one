@@ -41,6 +41,6 @@ class MessagesController < ApplicationController
 
 private
   def message_params
-    params.require(:message).permit(:memo, :user_id, :parent_message_id)
+    params.require(:message).permit(:memo, :user_id, :parent_message_id, :city, :lat, :lng, :weather)
   end
 end

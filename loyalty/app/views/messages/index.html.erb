@@ -6,7 +6,10 @@
   <input type="hidden" id="lng" value="">
   <input type="hidden" id="lat" value="">
   <input type="hidden" id="city" value="">
+  <input type="hidden" id="weather" value="">
+  <input type="hidden" id="location" value="<%= current_user.location %>">
   <script type="text/javascript">
+
     var userId = <%= current_user.id  %>
     var author = "<%= current_user.username %>"
     <% if Message.last != nil %>
@@ -36,6 +39,9 @@
       <div class="text">
         <p><%= message.memo %></p>
         <p>Author: <%= User.find(message.user_id).username %></p>
+        <p><%= message.city %></p>
+        <p>longtitude: <%= message.lng %> | latitude: <%= message.lat %></p>
+        <p>Temperature: <%= message.weather %>C°</p>
       </div>
       <div class="reply-box">
         <% if current_user %>
