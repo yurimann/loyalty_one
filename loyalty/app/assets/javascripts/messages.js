@@ -9,11 +9,17 @@ $(document).on("ready",function(){
 
     var parentId = $("#master").val();
     var tabValue = $("#tab").val();
-    var message = $("#message_memo").val()
+    var message = $("#message_memo").val();
+    var city = $("#city").val();
+    var lat = $("#lat").val();
+    var lng = $("#lng").val();
+    var weather = $("#weather").val();
+
     if (message === "") {
       alert("Sorry, message cannot be blank")
     }
     else {
+
         $.ajax({
         url: "/messages",
         method: "POST",
@@ -21,7 +27,11 @@ $(document).on("ready",function(){
                 {
                   "memo": message,
                   "user_id": userId,
-                  "parent_message_id": parentId
+                  "parent_message_id": parentId,
+                  "city": city,
+                  "lat": lat,
+                  "lng": lng,
+                  "weather": weather
                 }
              },
         dataType: "JSON"

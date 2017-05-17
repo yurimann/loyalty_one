@@ -1,0 +1,30 @@
+$(document).on("ready", function(){
+  var location = $("#location").val();
+
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CA&key=<%= Rails.application.secrets.google_api_key %>",
+      method: "POST",
+      dataType: "JSON"
+    }).done(function(e){
+      $("#city").val(e.results[0].formatted_address);
+      $("#lat").val(e.results[0].geometry.bounds.northeast.lat);
+      $("#lng").val(e.results[0].geometry.bounds.northeast.lng);
+      weather(location)
+      // console.log(address, lat, lng);
+    }).fail(function(e){
+      console.log(e);
+    })
+
+    function weather(location){
+      $.ajax({
+        url: "http://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+"<%= Rails.application.secrets.weather %>",
+        method: 'GET',
+        dataType: 'JSON'
+
+      }).done(function(e){
+        $("#weather").val(e.main.temp - 273.15+"C");
+      }).fail(function(e){
+        console.log("failed");
+      })
+    }
+})
