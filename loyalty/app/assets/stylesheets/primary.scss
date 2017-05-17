@@ -10,4 +10,28 @@
 
 body {
   padding: 20px;
+  background: $primary;
+}
+
+h2 {
+  font-size: 1.5em;
+  text-align: center;
+  color: white;
+}
+
+.link {
+  text-align: center;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+#nav {
+  background: $nav;
+  padding: 10px;
+  text-align: center;
+  a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: white;
+  }
 }

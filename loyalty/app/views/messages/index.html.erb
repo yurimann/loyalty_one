@@ -18,10 +18,9 @@
       var lastMessageId = 1
     <% end %>
   </script>
-  <p class="view-messages">View all my messages</p>
-  <div class="new-message">
-    <p>New Message</p>
-  </div>
+  <h2 class="view-messages">View all my messages</h2>
+  <h2 class="new-message">New Message</h2>
+
   <!-- Renders message form when user clicks new message or reply -->
   <div class="form-modal show">
     <%= render 'form' %>
@@ -38,9 +37,12 @@
     <div class="box" style="margin-left: <%= message.tabify %>%">
       <div class="text">
         <p><%= message.memo %></p>
+      </div>
+      <div class="data">
         <p>Author: <%= User.find(message.user_id).username %></p>
         <p><%= message.city %></p>
-        <p>longtitude: <%= message.lng %> | latitude: <%= message.lat %></p>
+        <p>longtitude: <%= message.lng %></p>
+        <p>latitude: <%= message.lat %></p>
         <p>Temperature: <%= message.weather %>C°</p>
       </div>
       <div class="reply-box">

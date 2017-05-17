@@ -77,6 +77,20 @@ $(document).on("ready",function(){
     }
   });
 
+  $('.view-messages').on('click', function(){
+    $('.message-modal').fadeToggle();
+    $('.board').fadeToggle();
+    if ($(".view-messages").html() === "View all my messages"){
+      $(".view-messages").html("Show all messages");
+    }
+    else {
+      $(".view-messages").html("View all my messages")
+    }
+  });
 
+  $(".close").children().on("click", function(){
+    $(".show").fadeOut();
+    console.log("click");
+  });
 
 })

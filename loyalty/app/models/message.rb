@@ -10,10 +10,6 @@ class Message < ApplicationRecord
     Message.where(parent_message_id: nil)
   end
 
-  def self.ascending
-    Message.order('created_at DESC')
-  end
-
   def self.group(messages, results_arr=[])
     messages.each do |msg|
 # This line puts the parent message in the array if it doesn't exist yet
@@ -43,7 +39,7 @@ class Message < ApplicationRecord
       # add 5 to value
     msg = Message.find(self.parent_message_id)
     x += 5
-    msg.tabify(x)  
+    msg.tabify(x)
   end
 
 end

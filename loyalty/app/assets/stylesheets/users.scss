@@ -1,7 +1,14 @@
 @import 'variables';
 
-.edit-link {
+.edit{
+  display: block;
+  text-align: center;
+  margin: 5px;
+  background: $background;
+}
 
+.edit-link {
+  text-align: center;
 }
 
 .edit-modal, .message-modal {

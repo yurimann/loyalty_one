@@ -9,12 +9,27 @@
 
   <body>
     <div id="nav">
+      <% unless current_page?(root_path) %>
+        <div class="link">
+          <%= link_to "Home", root_path %>
+        </div>
+      <% end %>
       <% if current_user %>
-        <%= link_to "My Profile", edit_user_path(current_user.id) %>
-        <%= link_to "Logout", :logout, method: :post %>
+        <% unless current_page?(edit_user_path(current_user)) %>
+          <div class="link">
+            <%= link_to "Edit My Profile", edit_user_path(current_user.id) %>
+          </div>
+        <% end %>
+        <div class="link">
+          <%= link_to "Logout", :logout, method: :post %>
+        </div>
       <% else %>
-        <%= link_to "Register", new_user_path %> |
-        <%= link_to "Login", :login %>
+        <div class="link">
+          <%= link_to "Register", new_user_path %> |
+        </div>
+        <div class="link">
+          <%= link_to "Login", :login %>
+        </div>
       <% end %>
     </div>
     <div class="flashes">

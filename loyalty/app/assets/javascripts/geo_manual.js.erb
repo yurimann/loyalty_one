@@ -2,7 +2,7 @@ $(document).on("ready", function(){
   var location = $("#location").val();
 
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CA&key=<%= Rails.application.secrets.google_api_key %>",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA&key=<%= Rails.application.secrets.google_api_key %>",
       method: "POST",
       dataType: "JSON"
     }).done(function(e){
