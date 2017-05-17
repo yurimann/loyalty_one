@@ -1,0 +1,12 @@
+$(document).on("ready", function(){
+var test = <%= ENV['GOOGLE_API_KEY'] %>
+  $.ajax({
+    url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= Rails.application.secrets.google_api_key %>",
+    method: "POST",
+    dataType: "JSON"
+  }).done(function(e){
+    var latitude = e.location.lat;
+    var longtitude = e.location.lng;
+    console.log(latitude, longtitude);
+  });
+})

@@ -9,23 +9,24 @@
   margin-top: 10px;
 }
 
-.box, .box2 {
+.box {
   display: block;
+  position: relative;
   background-color: $background;
   padding: 10px;
   border: 3px solid black;
   margin: 5px;
 }
 
-.box2 {
-  margin-left: 10%;
-  background: tan;
-}
-
 .reply-box {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
   text-align: right;
   font-size: .60em;
   font-style: italic;
+  padding: 10px;
 }
 
 .form-modal {
@@ -40,6 +41,7 @@
   border: 3px solid black;
   border-radius: 20px;
   background: $background;
+  z-index: 1;
 
 }
 

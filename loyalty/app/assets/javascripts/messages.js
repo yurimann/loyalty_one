@@ -4,13 +4,13 @@ $(document).on("ready",function(){
     $(".show").toggleClass("form-modal");
   });
 
-  $(".submit").on("click", function sumbit(e){
+  $(".submit").on("click", function(e){
     e.preventDefault();
 
-    var parentId = $("#master").val()
-    console.log(parentId);
-
-    if ($("#message_memo").val() === "") {
+    var parentId = $("#master").val();
+    var tabValue = $("#tab").val();
+    var message = $("#message_memo").val()
+    if (message === "") {
       alert("Sorry, message cannot be blank")
     }
     else {
@@ -19,7 +19,7 @@ $(document).on("ready",function(){
         method: "POST",
         data: {"message":
                 {
-                  "memo": $("#message_memo").val(),
+                  "memo": message,
                   "user_id": userId,
                   "parent_message_id": parentId
                 }
@@ -27,10 +27,42 @@ $(document).on("ready",function(){
         dataType: "JSON"
 
       }).done(function(data){
-          // console.log(data);
+        // if ($("#temp").length > 0 ){
+        //   $(
+        //   '<div class="box" style="margin-left: '+tabValue+'px">' +
+        //     '<div class="text">' +
+        //       "<p>" + message + "</p>" +
+        //       "<p>" + "Author:" + author + "</p>" +
+        //     "</div>" +
+        //     '<div class="reply-box">' +
+        //       '<input type="hidden" class="parent_message_id" value="'+lastMessageId+'">' +
+        //       '<p class="reply">' + "Reply" + "</p>" +
+        //     "</div>" +
+        //   "</div>"
+        //   ).insertAfter('#temp');
+        // }
+        // else {
+        //   $(".board").append(
+        //     $(
+        //     '<div class="box" style="margin-left: '+tabValue+'px">' +
+        //       '<div class="text">' +
+        //         "<p>" + message + "</p>" +
+        //         "<p>" + "Author:" + author + "</p>" +
+        //       "</div>" +
+        //       '<div class="reply-box">' +
+        //         '<input type="hidden" class="parent_message_id" value="'+lastMessageId+'">' +
+        //         '<p class="reply">' + "Reply" + "</p>" +
+        //       "</div>" +
+        //     "</div>"
+        //     )
+        //   )
+        // }
+        // $(".show").fadeToggle();
+        // $("#message-memo").val("")
+
           location.reload();
       }).fail(function(){
-        // console.log("failed");
+        console.log("failed");
       });
     }
   });
