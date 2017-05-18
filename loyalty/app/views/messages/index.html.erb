@@ -18,11 +18,13 @@
       var lastMessageId = 1
     <% end %>
   </script>
-  <h2 class="view-messages">View all my messages</h2>
+  <% if current_user.messages.any? %>
+    <h2 class="view-messages">View all my messages</h2>
+  <% end %>
   <h2 class="new-message">New Message</h2>
 
   <!-- Renders message form when user clicks new message or reply -->
-  <div class="form-modal show">
+  <div class="show">
     <%= render 'form' %>
   </div>
 <% else %>
@@ -30,10 +32,6 @@
 <% end %>
 <div class="board">
   <% @messages.each do |message| %>
-  <% x = 0 %>
-    <% if message.parent_message_id != nil %>
-      <% x += 10 %>
-    <% end %>
     <div class="box" style="margin-left: <%= message.tabify %>%">
       <div class="text">
         <p><%= message.memo %></p>

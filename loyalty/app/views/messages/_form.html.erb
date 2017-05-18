@@ -1,8 +1,6 @@
-<div class="close">
-  <h1>X</h1>
-</div>
 <%= form_for (@message) do |f| %>
-  <%= f.label :message %></br>
+  <%= f.label :memo, "Message" %></br>
   <%= f.text_area :memo, size: "30x5" %></br>
-  <%= f.submit "Done", class: 'submit' %>
+  <%= f.submit "Done", class: 'submit', id: "done"%>
+  <div class="insert"></div>
 <% end %>

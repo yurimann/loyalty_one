@@ -56,7 +56,7 @@ $(document).on("ready",function(){
   });
 
   $(".close").children().on("click", function(){
-    $(".show").fadeOut();
+    $(".show").toggleClass("form-modal");
     console.log("click");
   });
 

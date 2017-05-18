@@ -25,11 +25,13 @@
         </div>
       <% else %>
         <div class="link">
-          <%= link_to "Register", new_user_path %> 
+          <%= link_to "Register", new_user_path %>
         </div>
-        <div class="link">
-          <%= link_to "Login", :login %>
-        </div>
+        <% unless current_page?(login_path) %>
+          <div class="link">
+            <%= link_to "Login", :login %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="flashes">
