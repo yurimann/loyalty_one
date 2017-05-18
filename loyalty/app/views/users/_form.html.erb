@@ -9,7 +9,7 @@
 </div>
 <div class="edit">
   <%= f.label :email %>
-  <%= f.text_field :email %></br>
+  <%= f.email_field :email %></br>
 </div>
 <div class="edit">
   <%= f.label :location %>
@@ -24,7 +24,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></br>
 </div>
-<div class="edit">
+<div class="edit" id="submit">
   <%= f.submit %>
 </div>
 <% end %>

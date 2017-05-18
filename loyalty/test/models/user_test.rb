@@ -20,5 +20,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, @user.messages.length
   end
 
+  test "user can be updated" do
+    @user.location = "Oakville"
+    assert @user.valid?
+  end
 
 end

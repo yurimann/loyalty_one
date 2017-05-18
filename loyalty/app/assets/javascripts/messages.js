@@ -37,39 +37,6 @@ $(document).on("ready",function(){
         dataType: "JSON"
 
       }).done(function(data){
-        // if ($("#temp").length > 0 ){
-        //   $(
-        //   '<div class="box" style="margin-left: '+tabValue+'px">' +
-        //     '<div class="text">' +
-        //       "<p>" + message + "</p>" +
-        //       "<p>" + "Author:" + author + "</p>" +
-        //     "</div>" +
-        //     '<div class="reply-box">' +
-        //       '<input type="hidden" class="parent_message_id" value="'+lastMessageId+'">' +
-        //       '<p class="reply">' + "Reply" + "</p>" +
-        //     "</div>" +
-        //   "</div>"
-        //   ).insertAfter('#temp');
-        // }
-        // else {
-        //   $(".board").append(
-        //     $(
-        //     '<div class="box" style="margin-left: '+tabValue+'px">' +
-        //       '<div class="text">' +
-        //         "<p>" + message + "</p>" +
-        //         "<p>" + "Author:" + author + "</p>" +
-        //       "</div>" +
-        //       '<div class="reply-box">' +
-        //         '<input type="hidden" class="parent_message_id" value="'+lastMessageId+'">' +
-        //         '<p class="reply">' + "Reply" + "</p>" +
-        //       "</div>" +
-        //     "</div>"
-        //     )
-        //   )
-        // }
-        // $(".show").fadeToggle();
-        // $("#message-memo").val("")
-
           location.reload();
       }).fail(function(){
         console.log("failed");

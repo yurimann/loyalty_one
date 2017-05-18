@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    respond_to do |format|
+      format.html
+      format.json { render json: @user }
+    end
+    
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_url
