@@ -22,5 +22,5 @@ test:
 
 production:
   adapter: postgresql
-  database: loyalty
+  database: loyalty_one
   host: localhost
