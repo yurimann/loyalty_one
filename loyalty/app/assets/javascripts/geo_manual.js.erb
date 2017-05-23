@@ -1,8 +1,10 @@
 $(document).on("ready", function(){
   var location = $("#location").val();
-
+  if (location == null) {
+    location = "Toronto"
+  }
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA&key=<%= Rails.application.secrets.google_api_key %>",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA&key=<%= ENV["google_api_key"]%>",
       method: "POST",
       dataType: "JSON"
     }).done(function(e){
@@ -18,7 +20,7 @@ $(document).on("ready", function(){
     function weather(location){
 
       $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+"<%= Rails.application.secrets.weather %>",
+        url: "http://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+"<%= ENV["weather"] %>",
         method: 'GET',
         dataType: 'JSON'
       }).done(function(e){

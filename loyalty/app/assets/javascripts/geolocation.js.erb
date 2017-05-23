@@ -2,7 +2,7 @@ $(document).on("ready", function(){
 
   $(".search").on("click", function(){
     $.ajax({
-      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= Rails.application.secrets.google_api_key %>",
+      url: "https://www.googleapis.com/geolocation/v1/geolocate?key=<%= ENV["google_api_key"] %>",
       method: "POST",
       dataType: "JSON"
     }).done(function(e){
