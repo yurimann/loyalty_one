@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
     else
       @message.save
     end
-    redirect_to root_path
+  
   end
 
   def edit
