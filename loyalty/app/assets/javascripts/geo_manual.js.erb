@@ -11,7 +11,7 @@ $(document).on("ready", function(){
       $("#city").val(e.results[0].formatted_address);
       $("#lat").val(e.results[0].geometry.bounds.northeast.lat);
       $("#lng").val(e.results[0].geometry.bounds.northeast.lng);
-    
+
       apixu(location);
 
     }).fail(function(e){
@@ -21,12 +21,12 @@ $(document).on("ready", function(){
     function apixu(location) {
 
       $.ajax({
-        url: "https://api.apixu.com/v1/current.json?key=" + "<%= ENV["apixu"] %>"+"&q=" + location,
+        url: "https://api.apixu.com/v1/current.json?key=<%= ENV["apixu"] %>"+"&q=" + location,
         method: 'GET',
         dataType: 'JSON'
       }).done(function(e){
         console.log(e.current.temp_c);
-        $("#weather").val(e.current.temp_c)
+        $("#weather").val(e.current.temp_c);
       }).fail(function(e){
         console.log("Failed");
       })
