@@ -11,22 +11,24 @@ $(document).on("ready", function(){
       $("#city").val(e.results[0].formatted_address);
       $("#lat").val(e.results[0].geometry.bounds.northeast.lat);
       $("#lng").val(e.results[0].geometry.bounds.northeast.lng);
-      weather(location)
-      // console.log(address, lat, lng);
+    
+      apixu(location);
+
     }).fail(function(e){
       console.log(e);
     })
 
-    function weather(location){
+    function apixu(location) {
 
       $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+"<%= ENV["weather"] %>",
+        url: "https://api.apixu.com/v1/current.json?key=" + "<%= ENV["apixu"] %>"+"&q=" + location,
         method: 'GET',
         dataType: 'JSON'
       }).done(function(e){
-        $("#weather").val(e.main.temp - 273.15+"C");
+        console.log(e.current.temp_c);
+        $("#weather").val(e.current.temp_c)
       }).fail(function(e){
-        console.log("failed");
+        console.log("Failed");
       })
     }
 })
