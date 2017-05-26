@@ -25,13 +25,14 @@ class MessagesController < ApplicationController
       format.html
       format.json { render json: @message }
     end
-
+    byebug
     if @message.invalid?
       flash.now[:alert] = @message.errors.full_messages
     else
       @message.save
+      flash[:alert] = "Message successfully posted"
     end
-  
+
   end
 
   def edit

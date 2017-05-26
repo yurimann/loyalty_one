@@ -31,8 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'figaro'
-
+group :production do
+  gem 'figaro'
+end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'sqlite3'
+  gem 'database_cleaner'
 end
 
 group :development do

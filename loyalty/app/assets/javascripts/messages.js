@@ -1,9 +1,5 @@
 $(document).on("ready",function(){
 
-  $(".new-message").on("click", function(e){
-    $(".show").toggleClass("form-modal");
-  });
-
   $(".submit").on("click", function(e){
     e.preventDefault();
 

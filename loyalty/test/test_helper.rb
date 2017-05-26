@@ -5,6 +5,7 @@ require 'capybara/rails'
 require 'capybara/minitest'
 require 'capybara/poltergeist'
 require 'minitest/pride'
+require 'minitest/autorun'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
