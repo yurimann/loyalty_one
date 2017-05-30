@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
       format.html
       format.json { render json: @message }
     end
-    byebug
+    
     if @message.invalid?
       flash.now[:alert] = @message.errors.full_messages
     else

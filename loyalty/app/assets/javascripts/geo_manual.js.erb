@@ -1,34 +1,35 @@
-$(document).on("ready", function(){
-  var location = $("#location").val();
-  if (location == null) {
-    location = "Toronto"
-  }
-    $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA&key=<%= ENV["google_api_key"]%>",
-      method: "POST",
-      dataType: "JSON"
-    }).done(function(e){
-      $("#city").val(e.results[0].formatted_address);
-      $("#lat").val(e.results[0].geometry.bounds.northeast.lat);
-      $("#lng").val(e.results[0].geometry.bounds.northeast.lng);
-
-      apixu(location);
-
-    }).fail(function(e){
-      console.log(e);
-    })
-
-    function apixu(location) {
-
-      $.ajax({
-        url: "https://api.apixu.com/v1/current.json?key=<%= ENV["apixu"] %>"+"&q=" + location,
-        method: 'GET',
-        dataType: 'JSON'
-      }).done(function(e){
-        console.log(e.current.temp_c);
-        $("#weather").val(e.current.temp_c);
-      }).fail(function(e){
-        console.log("Failed");
-      })
-    }
-})
+// $(document).on("ready", function(){
+//   var location = $("#location").val();
+//   console.log(<%= ENV["google_api_key"]%>);
+//   if (location == null) {
+//     location = "Toronto"
+//   }
+//     $.ajax({
+//       url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA&key=<%= ENV["google_api_key"]%>",
+//       method: "POST",
+//       dataType: "JSON"
+//     }).done(function(e){
+//       $("#city").val(e.results[0].formatted_address);
+//       $("#lat").val(e.results[0].geometry.bounds.northeast.lat);
+//       $("#lng").val(e.results[0].geometry.bounds.northeast.lng);
+//
+//       apixu(location);
+//
+//     }).fail(function(e){
+//       console.log(e);
+//     })
+//
+//     function apixu(location) {
+//
+//       $.ajax({
+//         url: "https://api.apixu.com/v1/current.json?key=<%= ENV["apixu"] %>"+"&q=" + location,
+//         method: 'GET',
+//         dataType: 'JSON'
+//       }).done(function(e){
+//         console.log(e.current.temp_c);
+//         $("#weather").val(e.current.temp_c);
+//       }).fail(function(e){
+//         console.log("Failed");
+//       })
+//     }
+// })

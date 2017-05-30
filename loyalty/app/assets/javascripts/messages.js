@@ -1,21 +1,34 @@
 $(document).on("ready",function(){
 
+  $.ajax({
+    url: "/index",
+    method: "GET",
+    dataType: "JSON"
+  }).done(function(e){
+    console.log(e);
+    var parentId = e.id;
+    var city = e.location;
+    $("#city").val(city);
+    geolocate(city);
+  })
+
   $(".submit").on("click", function(e){
     e.preventDefault();
 
-    var parentId = $("#master").val();
     var tabValue = $("#tab").val();
     var message = $("#message_memo").val();
-    var city = $("#city").val();
     var lat = $("#lat").val();
     var lng = $("#lng").val();
     var weather = $("#weather").val();
+    var parentId = $("#master").val();
+    var city = $("#city").val();
 
+    console.log(tabValue, message, lat, lng, weather, parentId, city);
     if (message === "") {
       alert("Sorry, message cannot be blank")
     }
     else {
-
+      console.log(userId);
         $.ajax({
         url: "/messages",
         method: "POST",
@@ -56,4 +69,34 @@ $(document).on("ready",function(){
     console.log("click");
   });
 
+  function geolocate(location){
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA",
+      method: "POST",
+      dataType: "JSON"
+    }).done(function(e){
+      var lat = (e.results[0].geometry.bounds.northeast.lat);
+      var lng = (e.results[0].geometry.bounds.northeast.lng);
+      $("#lat").val(lat);
+      $("#lng").val(lng);
+      apixu(location);
+      console.log(lat, lng);
+
+    }).fail(function(e){
+      console.log(e);
+    })
+  }
+
+  function apixu(location) {
+       $.ajax({
+         url: "https://api.apixu.com/v1/current.json?key=" + weather + "&q=" + location,
+         method: 'GET',
+         dataType: 'JSON'
+       }).done(function(e){
+         console.log(e.current.temp_c);
+         $("#weather").val(e.current.temp_c);
+       }).fail(function(e){
+         console.log("Failed");
+       })
+     }
 })
