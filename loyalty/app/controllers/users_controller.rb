@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @user = current_user
+    # JSON request would only return the ID and location
     respond_to do |format|
       format.html
       format.json { render json: @user, only: [:id, :location] }

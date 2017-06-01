@@ -22,7 +22,7 @@ class UserFlowTest < ActionDispatch::IntegrationTest
   test "allow user to log in" do
     visit login_path
 
-    fill_in('email', with: "test_email@gmail.com" )
+    fill_in('email', with: "test@gmail.com" )
     fill_in('password', with: "password")
     click_on('Login')
 
@@ -41,5 +41,19 @@ class UserFlowTest < ActionDispatch::IntegrationTest
     click_on('done')
 
     assert page.has_content?("Message successfully posted")
+  end
+
+  test "ajax message post request" do
+    post messages_path("message":
+            {
+              "memo": "message",
+              "user_id": 1,
+              "parent_message_id": "",
+              "city": "Toronto",
+              "lat": 48,
+              "lng": 47,
+              "weather": 20
+            }), xhr: true
+    assert_response :success
   end
 end

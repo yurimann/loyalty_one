@@ -1,4 +1,15 @@
 <%= form_for (@message) do |f| %>
+  <input type="hidden" class="parent_message_id" id="master" value="">
+  <input type="hidden" id="tab" value="">
+  <input type="hidden" id="lng" value="">
+  <input type="hidden" id="lat" value="">
+  <input type="hidden" id="city" value="">
+  <input type="hidden" id="weather" value="">
+  <input type="hidden" id="user" value="<%= @user.id %>">
+  <input type="hidden" id="location" value="<%= current_user.location %>">
+  <script type="text/javascript">
+    var weather = "<%= ENV["weather"] %>"
+  </script>
   <%= f.label :memo, "Message" %></br>
   <%= f.text_area :memo %></br>
   <%= f.submit "Done", class: 'submit', id: "done"%>

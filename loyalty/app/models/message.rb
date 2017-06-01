@@ -33,12 +33,14 @@ class Message < ApplicationRecord
   end
 
   def tabify(x = 0)
+    # Base. If It's a parent message, return x
     if self.parent_message_id == nil
       return x
     end
       # add 5 to value
     msg = Message.find(self.parent_message_id)
     x += 5
+    # Recursive. Will check for parent message
     msg.tabify(x)
   end
 

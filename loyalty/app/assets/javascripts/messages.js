@@ -1,11 +1,10 @@
 $(document).on("ready",function(){
-
+  // This call gets the user ID and the location entered
   $.ajax({
     url: "/index",
     method: "GET",
     dataType: "JSON"
   }).done(function(e){
-    console.log(e);
     var parentId = e.id;
     var city = e.location;
     $("#city").val(city);
@@ -22,13 +21,12 @@ $(document).on("ready",function(){
     var weather = $("#weather").val();
     var parentId = $("#master").val();
     var city = $("#city").val();
+    var userId = $("#user").val();
 
-    console.log(tabValue, message, lat, lng, weather, parentId, city);
     if (message === "") {
       alert("Sorry, message cannot be blank")
     }
     else {
-      console.log(userId);
         $.ajax({
         url: "/messages",
         method: "POST",
@@ -46,6 +44,7 @@ $(document).on("ready",function(){
         dataType: "JSON"
 
       }).done(function(data){
+        // console.log(data);
           location.reload();
       }).fail(function(){
         console.log("failed");
@@ -70,6 +69,7 @@ $(document).on("ready",function(){
   });
 
   function geolocate(location){
+    // Based on the location provided, the longitude and latitude are returned by the API call
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"+CANADA",
       method: "POST",
@@ -77,6 +77,7 @@ $(document).on("ready",function(){
     }).done(function(e){
       var lat = (e.results[0].geometry.bounds.northeast.lat);
       var lng = (e.results[0].geometry.bounds.northeast.lng);
+      // The hidden values in the form are updated
       $("#lat").val(lat);
       $("#lng").val(lng);
       apixu(location);
@@ -88,12 +89,14 @@ $(document).on("ready",function(){
   }
 
   function apixu(location) {
+      // Call to the API to get the current weather based on the location provided
        $.ajax({
          url: "https://api.apixu.com/v1/current.json?key=" + weather + "&q=" + location,
          method: 'GET',
          dataType: 'JSON'
        }).done(function(e){
          console.log(e.current.temp_c);
+        //  Hidden value is updated
          $("#weather").val(e.current.temp_c);
        }).fail(function(e){
          console.log("Failed");

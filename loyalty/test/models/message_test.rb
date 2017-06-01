@@ -35,4 +35,9 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal User.find(@second_message.parent_message_id), @user
   end
 
+  test "Message can have more than 255 characters" do
+    @message.memo = 3000.times{'x'}
+    assert @message.valid?
+  end
+
 end

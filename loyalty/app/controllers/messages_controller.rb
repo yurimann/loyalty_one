@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
     messages = Message.primary_message
     @messages = Message.group(messages)
     @message = Message.new
-    if current_user
+    @user = current_user
+    if @user
       @user_messages = current_user.messages
     end
     # gives the user's messages in JSON format
@@ -19,13 +20,16 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @user = current_user
     @message = Message.new(message_params)
+    if @user != nil
+      @message.user_id = @user.id
+    end
     # Allows JSON to be received from an AJAX call
     respond_to do |format|
       format.html
       format.json { render json: @message }
     end
-    
     if @message.invalid?
       flash.now[:alert] = @message.errors.full_messages
     else

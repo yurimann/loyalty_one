@@ -1,19 +1,7 @@
 <!-- checks if user is logged in -->
 <% if current_user %>
 <!-- This is where the parent message ID variable is stored -->
-  <input type="hidden" class="parent_message_id" id="master" value="">
-  <input type="hidden" id="tab" value="">
-  <input type="hidden" id="lng" value="">
-  <input type="hidden" id="lat" value="">
-  <input type="hidden" id="city" value="">
-  <input type="hidden" id="weather" value="">
-  <input type="hidden" id="location" value="<%= current_user.location %>">
-  <script type="text/javascript">
-    var google = "<%= ENV["google_api_key"] %>"
-    var weather = "<%= ENV["weather"] %>"
-    var userId = "<%= current_user.id  %>";
-    var author = "<%= current_user.username %>";
-  </script>
+
   <% if current_user.messages.any? %>
     <h2 class="view-messages">View all my messages</h2>
   <% end %>
@@ -54,6 +42,12 @@
       <div class="box">
         <div class="text">
           <%= msg.memo %>
+        </div>
+        <div class="data">
+          <p><%= msg.city %></p>
+          <p>longtitude: <%= msg.lng %></p>
+          <p>latitude: <%= msg.lat %></p>
+          <p>Temperature: <%= msg.weather %>C°</p>
         </div>
         <div class="post-date">
           <%= msg.created_at.in_time_zone("Eastern Time (US & Canada)") %>
